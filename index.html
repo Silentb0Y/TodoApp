@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todolist Using Js</h1>
+
+      <div class="form">
+        <input type="text" id="inp" placeholder="Enter You Note" />
+        <button id="btn">Add</button>
+      </div>
+      <ul id="todolist"></ul>
+    </div>
+    <script>
+      var list = [];
+      var inp = document.getElementById("inp");
+      var todo = document.getElementById("todolist");
+      document.getElementById("btn").addEventListener("click", function () {
+        list.push(inp.value);
+        inp.value = "";
+        showlist();
+      });
+
+      function showlist() {
+        todo.innerHTML = "";
+        list.forEach(function (n, i) {
+          todo.innerHTML +=
+            "<li>" +
+            n +
+            "<a onclick='edit(" +
+            i +
+            ")'>edit</a>" +
+            "<a onclick='delet()'>&times;</a></li>";
+        });
+      }
+      function delet(i) {
+        list.splice(i, 1);
+        showlist();
+      }
+      function edit(i) {
+        var newValue = prompt("Enter new value");
+        list.splice(i, 1, newValue);
+        showlist();
+      }
+    </script>
+  </body>
+</html>
